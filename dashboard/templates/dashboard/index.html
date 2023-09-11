@@ -5,5 +5,43 @@
 {% endblock %}
 
 {% block content %}
-<h1>This is Dashboard page.</h1>
+<div class="row mt-5 pt-3">
+    <div class="col-md-4">
+        <div class="border p-3">
+            <h4>Add Data</h4>
+            <form action="" method="POST">
+                {% csrf_token %}
+            </form>
+            <hr>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div>
+            <canvas id="myChart" width="400" height="280"></canvas>
+        </div>
+          
+        <script>
+        const ctx = document.getElementById('myChart');
+        
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+            },
+            options: {
+            scales: {
+                y: {
+                beginAtZero: true
+                }
+            }
+            }
+        });
+        </script>
+    </div>
+</div>
 {% endblock %}
