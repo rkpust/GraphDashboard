@@ -26,10 +26,18 @@
         new Chart(ctx, {
             type: 'bar',
             data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: [
+                {% for data in data %}
+                '{{ data.month}}',
+                {% endfor %}
+            ],
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                label: '# Employee Attendance Per Month',
+                data: [
+                {% for data in data %}
+                {{data.attendace}},
+                {% endfor %}
+                ],
                 borderWidth: 1
             }]
             },
