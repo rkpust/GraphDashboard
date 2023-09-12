@@ -8,9 +8,14 @@
 <div class="row mt-5 pt-3">
     <div class="col-md-4">
         <div class="border p-3">
-            <h4>Add Data</h4>
+            <h6 class="text-center mb-2 py-2">
+                Enter first three letter of Month name and total Attendance of employee of this month.
+            </h6>
+            <hr>
             <form action="" method="POST">
                 {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Save" class="btn btn-success btn-block mt-2">
             </form>
             <hr>
         </div>
