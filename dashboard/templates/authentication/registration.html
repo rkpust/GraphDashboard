@@ -11,6 +11,7 @@
     <div class="mx-auto">
         <h1 class="text-center">Registration Form</h1>
         <hr class="my-4">
+        <div class="text-center text-danger font-weight-bold ">{{ error }}</div>
         <div class="mx-auto mt-2" style="width: 320px;">
             <form action="" class="mx-5" method="POST">
                 {% csrf_token %}
@@ -22,7 +23,7 @@
                 <input type="password" name="password" required >
                 <label for="confirm_password">Confirm Password: </label>
                 <input type="password" name="confirm_password" required>
-                <button type="submit" class="btn btn-primary mt-3 align-right">SignUp</button>
+                <button type="submit" class="btn btn-primary mt-3">SignUp</button>
                 <br>
                 <div class="text-center my-2">
                     <a class="text-dark" href="#">I already have account.</a>

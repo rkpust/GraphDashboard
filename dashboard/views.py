@@ -6,21 +6,23 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def registration(request):
-    # user_info = User.objects.all()
+    #Checking form method is post,then insert data
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
 
-    # #Checking form method is post
-    # if request.method == 'POST':
-    #     reg_form = UserForm(request.POST)
-    #     if reg_form.is_valid():
-    #         reg_form.save()
-    #         return redirect('login')
-    # else:
-    #     reg_form = UserForm()
+        #print(username, email, password, confirm_password) #showed inserted data in terminal
 
-    # context = { 
-    #     'data': user_info,
-    #     'registration_form': reg_form,
-    #     }
+        if password == confirm_password:
+            new_user = User.objects.create_user(username, email, password)
+            new_user.save()
+            return redirect('login')
+        else:
+            context = { 'error': "Password is not same." }
+            return render(request, 'authentication/registration.html', context)
+
     return render(request, 'authentication/registration.html')
 
 def index(request):
