@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import EmployeeData
 from .forms import EmployeeDataForm
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 
@@ -41,16 +41,6 @@ def user_login(request):
             context = { 'error': "User Name or Password is incorrect." }
             return render(request, 'authentication/login.html', context)
 
-
-        #print(username, password) #showed inserted data in terminal
-
-        # if password == confirm_password:
-        #     new_user = User.objects.create_user(username, email, password)
-        #     new_user.save()
-        #     return redirect('login')
-        # else:
-        #     context = { 'error': "Password is not same." }
-        #     return render(request, 'authentication/login.html', context)
     return render(request, 'authentication/login.html')
 
 def index(request):
@@ -71,3 +61,9 @@ def index(request):
         'form': form,
         }
     return render(request, 'dashboard/index.html', context)
+
+def user_logout(request):
+    logout(request)
+    #context = { 'error': 'You are Logout. Please Login again.'}
+    return redirect('login')
+    
