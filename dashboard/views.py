@@ -3,6 +3,7 @@ from .models import EmployeeData
 from .forms import EmployeeDataForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from  django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -43,6 +44,7 @@ def user_login(request):
 
     return render(request, 'authentication/login.html')
 
+@login_required(login_url='login') # protect unauthorised access and direct link entering
 def index(request):
     #Retrieved all data from DB
     employee_data = EmployeeData.objects.all()
@@ -64,6 +66,5 @@ def index(request):
 
 def user_logout(request):
     logout(request)
-    #context = { 'error': 'You are Logout. Please Login again.'}
     return redirect('login')
     
