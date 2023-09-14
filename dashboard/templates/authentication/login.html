@@ -1,13 +1,13 @@
 {% extends 'partials/base.html' %}
 
 {% block title %}
-<title>Registration Form</title>
+<title>Login</title>
 {% endblock %}
 
 {% block content %}
 <div class="row bg-light my-5 mx-auto rounded-lg py-2" style="width:460px;">
     <div class="mx-auto">
-        <h1 class="text-center">Registration Form</h1>
+        <h1 class="text-center">Login Here</h1>
         <hr class="my-4">
         <div class="text-center text-danger font-weight-bold ">{{ error }}</div>
         <div class="mx-auto mt-2" style="width: 320px;">
@@ -15,16 +15,12 @@
                 {% csrf_token %}
                 <label for="username">User Name: </label>
                 <input type="text" name="username" required>
-                <label for="email">Email: </label>
-                <input type="email" name="email" required >
                 <label for="password">Password: </label>
                 <input type="password" name="password" required >
-                <label for="confirm_password">Confirm Password: </label>
-                <input type="password" name="confirm_password" required>
-                <button type="submit" class="btn btn-primary mt-3">SignUp</button>
+                <button type="submit" class="btn btn-primary mt-3">Login</button>
                 <br>
                 <div class="text-center my-2">
-                    <span>I already have account. </span><a class="text-dark font-weight-bold" href="{% url 'login' %}">Login</a>
+                    <span>No account? </span><a class="text-dark font-weight-bold" href="{% url 'registration' %}">Create.</a>
                 </div>
             </form>
 </div>
