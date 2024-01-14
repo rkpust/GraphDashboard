@@ -27,37 +27,38 @@
         <div>
             <canvas id="myChart" width="400" height="280"></canvas>
         </div>
-          
-        <script>
-        const ctx = document.getElementById('myChart');
-        
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-            labels: [
-                {% for data in data %}
-                '{{ data.month}}',
-                {% endfor %}
-            ],
-            datasets: [{
-                label: '# Employee Attendance Per Month',
-                data: [
-                {% for data in data %}
-                {{ data.attendance }},
-                {% endfor %}
-                ],
-                borderWidth: 1
-            }],
-            },
-            options: {
-            scales: {
-                y: {
-                beginAtZero: true
-                }
-            }
-            }
-        });
-        </script>
     </div>
+    {{ redirect_to_login_immediately }}  <!-- auto_logout(step=3) -->
 </div>
+
+<script>
+    const ctx = document.getElementById('myChart');
+    
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+        labels: [
+            {% for data in data %}
+            '{{ data.month}}',
+            {% endfor %}
+        ],
+        datasets: [{
+            label: '# Employee Attendance Per Month',
+            data: [
+            {% for data in data %}
+            {{ data.attendance }},
+            {% endfor %}
+            ],
+            borderWidth: 1
+        }],
+        },
+        options: {
+        scales: {
+            y: {
+            beginAtZero: true
+            }
+        }
+        }
+    });
+    </script>
 {% endblock %}

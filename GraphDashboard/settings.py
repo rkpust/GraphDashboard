@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_auto_logout.middleware.auto_logout', #auto_logout(step=1) #after installing django-auto-logout, pytz
 ]
 
 ROOT_URLCONF = 'GraphDashboard.urls'
@@ -65,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_auto_logout.context_processors.auto_logout_client', #auto_logout(step=2)
             ],
         },
     },
@@ -139,3 +141,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Django Auto Logout
+#auto_logout(step=4)
+AUTO_LOGOUT = {
+    'IDLE_TIME': 600,  # logout after 10 minutes of downtime
+    'REDIRECT_TO_LOGIN_IMMEDIATELY': True,  #to redirect the user to the login page immediately after the idle-time expires
+    'MESSAGE': 'The session has expired. Please login again to continue.', #to show message
+    }
