@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from django.shortcuts import render
+from django.conf import settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_auto_logout.middleware.auto_logout', #auto_logout(step=1) #after installing django-auto-logout, pytz
+    'dashboard.maintenance.MaintenanceModeMiddleware',
 ]
 
 ROOT_URLCONF = 'GraphDashboard.urls'
@@ -149,3 +152,11 @@ AUTO_LOGOUT = {
     'REDIRECT_TO_LOGIN_IMMEDIATELY': True,  #to redirect the user to the login page immediately after the idle-time expires
     'MESSAGE': 'The session has expired. Please login again to continue.', #to show message
     }
+
+
+#Maintaince Mode
+MAINTENANCE_MODE = True  # Set this to True to enable maintenance mode
+MAINTENANCE_MODE_IGNORE_SUPERUSER = True  # Set this to True to ignore maintenance mode for Superuser
+
+
+
